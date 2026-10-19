@@ -1,0 +1,19 @@
+from machine import Pin, PWM
+import time
+
+# 1. Initialize the pin as a PWM object
+# (Change '15' to whatever GPIO your LED is physically pinned to)
+led = PWM(Pin(15))
+
+# 2. Set the frequency to 1000 Hz so it doesn't flicker
+led.freq(1000)
+
+# 3. Set the duty cycle to 50%
+# For duty_u16, half of 65535 is roughly 32768
+led.duty_u16(32768) 
+
+print("LED is now running at 50% brightness")
+
+# Keep the script alive so the hardware continues running the PWM
+while True:
+    time.sleep(1)
